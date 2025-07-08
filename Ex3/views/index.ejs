@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KEC University - Student Portal</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>KEC University - Student Management</h1>
+
+    <form action="/add" method="POST" class="student-form">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="course" placeholder="Course" required>
+        <button type="submit">Add Student</button>
+    </form>
+
+    <div class="student-list">
+        <% students.forEach(student => { %>
+            <div class="student-card">
+                <form action="/update/<%= student._id %>" method="POST">
+                    <input type="text" name="name" value="<%= student.name %>" required>
+                    <input type="email" name="email" value="<%= student.email %>" required>
+                    <input type="text" name="course" value="<%= student.course %>" required>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="/delete/<%= student._id %>" method="POST">
+                    <button class="delete" type="submit">Delete</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</div>
+</body>
+</html>
